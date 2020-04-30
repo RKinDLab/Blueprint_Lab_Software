@@ -3,7 +3,7 @@
 Links
 --------------
 * **Blueprint Lab** - https://blueprintlab.com/
-* **Reach 5 Mini** - https://blueprintlab.com/reach-5-mini-2-2/
+* **Reach Alpha** - https://blueprintlab.com/products/reach-alpha/
 
 Contents
 --------------

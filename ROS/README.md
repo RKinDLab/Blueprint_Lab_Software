@@ -9,7 +9,7 @@ BlueprintLab ROS packages for interfacing with the Reach5Mini products via ROS.
     * **ROS/reach5mini_ros_passthrough (required):** Bottom-end ROS to Serial passthrough script for R5M data transmission. Main script: `scripts/r5m_passthrough.py`
     * **ROS/Examples/keyboard_r5m_test:** Package to control joints on a Reach 5 Mini (R5M) using a keyboard as the input. Main script: `scripts/keyboard_r5m.py`
     * **ROS/Examples/r5m_ros_controller:** Top-end control interface for sending commands to the R5M ROS topics and receiving data from the R5M ROS topics. Main script: `scripts/r5m_control.py`
-
+    * **ROS/Examples/r5m_request_packets:** Top-end interface example to show how to request packets from either the RS232 or RS485 bus. Due differences between the RS232 and RS485 bus, separate functionailty is required. Main scripts: `scripts/r5m_request_data_rs232.py`, `scripts/r5m_request_data_rs485.py`
 
 
 
@@ -105,11 +105,11 @@ The timestamp should be updated everytime you are about to publish the message, 
 ### Current packages and scripts
 
 
-#### blueprintlab_reachsystem_ros_messages 
+#### blueprintlab\_reachsystem\_ros\_messages 
 ROS package for storing ROS message types. Must be compiled and installed to be able to use any other package from BlueprintLab.
 How to run: Message container only. Does not run as a node.
 
-#### reach5mini_ros_passthrough 
+#### reach5mini\_ros\_passthrough 
 Bottom-end ROS to Serial passthrough script for R5M data transmission. Main script: `scripts/r5m_passthrough.py`
 How to run: 
 
@@ -119,11 +119,11 @@ How to run:
 2. Via `roslaunch`: `roslaunch reach5mini_ros_passthrough run_reach5mini_passthrough.launch`.
 This is using the launch file at location `reach5mini_ros_passthrough/launch/run_reach5mini_passthrough.launch`. This is designed to launch multiple instances of the `reach5mini_ros_passthrough` with preset user arguments in the same format as the above (rosrun) example. Edit the files to change the default values or enable the running of more than one instance of this package.
 
-#### keyboard_r5m_test 
+#### keyboard\_r5m\_test 
 Package to control joints on a R5M using a keyboard as the input. Main script: `scripts/keyboard_r5m.py`
 How to run: `rosrun keyboard_r5m_test keyboard_r5m.py`
 
-#### r5m_ros_controller 
+#### r5m\_ros\_controller 
 This is a template for a top-side control script. It can be cloned and modified by users. It is designed for sending commands or requests to the R5M ROS topics and receiving data from the R5M ROS topics. Main script: `scripts/r5m_control.py`
 How to run:
 
@@ -133,4 +133,13 @@ How to run:
 2. Via `roslaunch`: `roslaunch r5m_ros_controller run_reach5mini_control.launch`.
 This is using the launch file at location `r5m_ros_controller/launch/run_reach5mini_control.launch`. This is designed to launch multiple instances of the `r5m_ros_controller` with preset user arguments in the same format as the above (rosrun) example. Edit the files to change the default values or enable the running of more than one instance of this package.
 
+#### r5m\_request\_packets 
+This is a template for a top-side control script. It can be cloned and modified by users. It is designed for sending commands or requests to the R5M ROS topics and receiving data from the R5M ROS topics. Main scripts: `scripts/r5m_request_data_rs232.py`, `scripts/r5m_request_data_rs485.py`
+How to run:
+
+1. Via `rosrun`: `rosrun r5m_request_packets r5m_request_data_rs###.py <args>`. NOTE: `###` refers to either 232 or 485 depending if you are connecting via the RS232 or RS485 bus. 
+`<args>` is an optional parameter designed for running different instances of the package. `<args>` contains 1 parameter: R5M instance number. Example usage with <args> is `rosrun r5m_request_packets r5m_request_data_rs232.py 0`. Without `<args>`, the instance number defaults to 0.
+
+2. Via `roslaunch`: `roslaunch r5m_request_packets run_reach5mini_request_for_rs###.launch`. NOTE: `###` refers to either 232 or 485 depending if you are connecting via the RS232 or RS485 bus.
+This is using the launch files at location `r5m_request_packets/launch/`. This is designed to launch multiple instances of the `r5m_request_packets` with preset user arguments in the same format as the above (rosrun) example. Edit the files to change the default values or enable the running of more than one instance of this package.
 
