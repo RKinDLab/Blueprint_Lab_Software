@@ -16,6 +16,9 @@
   <param name="planning_plugin" value="$(arg planning_plugin)" />
   <param name="request_adapters" value="$(arg planning_adapters)" />
   <param name="start_state_max_bounds_error" value="$(arg start_state_max_bounds_error)" />
+  <!-- addded by me -->
+  <param name="n_points" value="10"/>
+  <param name="sample_duration" value="0.2"/>
 
   <rosparam command="load" file="$(find reach5mini_moveit_config)/config/ompl_planning.yaml"/>
 

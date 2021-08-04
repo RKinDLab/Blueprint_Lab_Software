@@ -195,6 +195,7 @@ class Reach5Mini_Passthrough():
 
 		# Initialise ROS publishers and subscribers
 		self.cmd_velocity_sub =     rospy.Subscriber('r5m_' + str(self.r5m_instance) + '/cmd_velocity', single_float, self.cmd_velocity_callback)  
+		self.cmd_current_sub =     rospy.Subscriber('r5m_' + str(self.r5m_instance) + '/cmd_current', single_float, self.cmd_current_callback)  
 		self.cmd_position_sub =     rospy.Subscriber('r5m_' + str(self.r5m_instance) + '/cmd_position', single_float, self.cmd_position_callback)    
 		self.requests_sub =     	rospy.Subscriber('r5m_' + str(self.r5m_instance) + '/requests', request_list, self.requests_callback)  
 		self.position_pub  = 	    rospy.Publisher('r5m_' + str(self.r5m_instance) + '/position', single_float, queue_size=10)
@@ -289,6 +290,17 @@ class Reach5Mini_Passthrough():
 			self.commconnection._send_serial(message.device_id, PacketID.VELOCITY, message.value)
 			self.commconnection.serial_lock = False
 
+	def cmd_current_callback(self, message):
+		if self.commconnection.serial_device:
+			print(__name__, 'cmd_velocity_callback():', 'device_id, value, timestamp:', 
+				message.device_id, message.value, message.stamp.to_sec())
+			
+			while self.commconnection.serial_lock:
+				time.sleep(0.001)
+			self.commconnection.serial_lock = True            
+			self.commconnection._send_serial(message.device_id, PacketID.CURRENT, message.value)
+			self.commconnection.serial_lock = False
+			
 	def cmd_position_callback(self, message):
 		if self.commconnection.serial_device:
 			print(__name__, 'cmd_position_callback():', 'device_id, value, timestamp:', 

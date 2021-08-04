@@ -2,7 +2,7 @@
 <robot name="reach5mini">
 
 <material name="black">
-  <color rgba="0 0 0 1"/>
+  <color rgba="0 0 .80 1"/>
 </material>
 
   <link name="base_link">
