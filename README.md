@@ -1,5 +1,11 @@
 # R5M_Examples
 
+
+## Disclaimer
+
+This is a heavily modified version of the repo that allows to send commands to the arm using joint currents. Since this was implemented the original repo has seen many changes. It may be better if the updated repo from blueprint is used. 
+
+
 Links
 --------------
 * **Blueprint Lab** - https://blueprintlab.com/
