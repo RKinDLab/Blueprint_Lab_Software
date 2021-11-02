@@ -133,12 +133,14 @@ def keyboard_release(key):
 
 def keyboard_r5m_main():
 
-    if not rospy.is_shutdown():
+    while not rospy.is_shutdown():
         with Listener(
                     on_press=keyboard_press,
                     on_release=keyboard_release
                     ) as listener:
             listener.join()
+        
+        
 
         
 

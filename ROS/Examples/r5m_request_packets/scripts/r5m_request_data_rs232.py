@@ -139,10 +139,12 @@ class Reach5MiniROSRequesterRS232():
 		# 		message.device_id, message.value, message.stamp.to_sec())
 
 	def other_callback(self, message):
+		print(message)
 		if message.device_id in self.device_ids:
 			data_array = []
+			print(message)
 			# Convert incoming float data to int if packet_id does not use float type
-			if message.packetid not in FLOAT_PACKETS:
+			if message.packet_id not in FLOAT_PACKETS:
 				for data in message.data:
 					data_array.append(int(round(data)))	# Making sure that it rounds correctly to the int from the float
 			else:
